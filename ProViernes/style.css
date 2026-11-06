@@ -1,0 +1,772 @@
+/* =====================================================
+   GESTIÓN DE ESTUDIANTES - IDAT
+   Diseño profesional y adaptable
+   ===================================================== */
+
+/* 1. VARIABLES */
+:root {
+  --azul: #1d4ed8;
+  --azul-oscuro: #1e3a8a;
+  --azul-suave: #eff6ff;
+
+  --fondo: #f1f5f9;
+  --blanco: #ffffff;
+
+  --texto: #0f172a;
+  --texto-suave: #64748b;
+
+  --borde: #dbe3ef;
+  --borde-campo: #cbd5e1;
+
+  --verde: #166534;
+  --verde-fondo: #dcfce7;
+
+  --rojo: #991b1b;
+  --rojo-oscuro: #7f1d1d;
+  --rojo-fondo: #fee2e2;
+
+  --foco: #f59e0b;
+
+  --fuente: "Segoe UI", Roboto, Arial, sans-serif;
+
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 1rem;
+  --esp-4: 1.5rem;
+
+  --alto-control: 2.75rem;
+  --radio: 10px;
+}
+
+/* 2. CONFIGURACIÓN GENERAL */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--texto);
+  background: var(--fondo);
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+}
+
+/* 3. ACCESIBILIDAD */
+.saltar {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  color: var(--azul-oscuro);
+  background: white;
+}
+
+.saltar:focus {
+  left: 10px;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* 4. CABECERA */
+.cabecera {
+  padding: 28px 24px;
+  color: white;
+  background: linear-gradient(120deg, #1e40af, #2563eb);
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.15);
+}
+
+.cabecera-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  max-width: 1200px;
+  margin: auto;
+  text-align: left;
+}
+
+.logo-academico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.logo-academico svg {
+  width: 48px;
+  height: 48px;
+}
+
+.cabecera-texto {
+  flex: 1;
+}
+
+.cabecera-texto .subtitulo {
+  display: block;
+  margin-bottom: 5px;
+  color: #bfdbfe;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.cabecera h1 {
+  margin-bottom: 5px;
+  font-size: 2rem;
+  font-weight: 750;
+}
+
+.cabecera p {
+  margin: 0;
+  color: #e0eaff;
+}
+
+.icono-decorativo {
+  width: 90px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.icono-decorativo svg {
+  width: 100%;
+}
+
+/* 5. CONTENIDO PRINCIPAL */
+main {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+/* 6. TARJETAS */
+.tarjeta {
+  margin-bottom: 22px;
+  padding: 24px;
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+  transition: box-shadow 0.2s ease;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.tarjeta h2 {
+  margin-bottom: 18px;
+  color: var(--azul-oscuro);
+  font-size: 1.25rem;
+}
+
+/* 7. RESUMEN ACADÉMICO */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.dato {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--borde);
+  border-radius: 13px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+}
+
+.icono-dato {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.icono-dato svg {
+  width: 31px;
+  height: 31px;
+}
+
+.icono-azul {
+  color: #2563eb;
+  background: #dbeafe;
+}
+
+.icono-verde {
+  color: #16a34a;
+  background: #dcfce7;
+}
+
+.icono-morado {
+  color: #7c3aed;
+  background: #ede9fe;
+}
+
+.dato h2 {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.dato p {
+  margin: 5px 0 0;
+  color: var(--azul-oscuro);
+  font-size: 1.65rem;
+  font-weight: 750;
+}
+
+.dato-contenido span {
+  display: block;
+  margin-top: 3px;
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+}
+
+/* 8. TÍTULOS DE SECCIONES */
+.titulo-seccion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.titulo-seccion h2 {
+  margin: 0;
+  color: var(--azul-oscuro);
+}
+
+.titulo-seccion p {
+  margin: 3px 0 0;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.icono-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  color: white;
+  background: var(--azul-oscuro);
+  border-radius: 11px;
+}
+
+.icono-titulo svg {
+  width: 23px;
+  height: 23px;
+}
+
+/* 9. FORMULARIO */
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px 16px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+label {
+  color: var(--texto);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+input {
+  width: 100%;
+  min-height: var(--alto-control);
+  padding: 10px 13px;
+  color: var(--texto);
+  background: white;
+  border: 1.5px solid var(--borde-campo);
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+input:hover {
+  border-color: var(--azul);
+}
+
+input:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+input:user-invalid {
+  border-color: var(--rojo);
+  background: #fff7f7;
+}
+
+.acciones-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 10. BOTONES */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 17px;
+  font-weight: 650;
+  line-height: 1.2;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.btn-primario {
+  color: white;
+  background: var(--azul);
+  border-color: var(--azul);
+}
+
+.btn-primario:hover {
+  background: var(--azul-oscuro);
+  border-color: var(--azul-oscuro);
+}
+
+.btn-secundario {
+  color: var(--azul-oscuro);
+  background: white;
+  border-color: var(--borde-campo);
+}
+
+.btn-secundario:hover {
+  background: var(--azul-suave);
+  border-color: var(--azul);
+}
+
+.btn-peligro {
+  color: white;
+  background: var(--rojo);
+  border-color: var(--rojo);
+}
+
+.btn-peligro:hover {
+  background: var(--rojo-oscuro);
+}
+
+.btn-chico {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 0.82rem;
+}
+
+td .btn + .btn {
+  margin-left: 5px;
+}
+
+/* 11. BUSCADOR */
+.busqueda {
+  margin-bottom: 18px;
+}
+
+.busqueda-contenedor {
+  position: relative;
+}
+
+.busqueda-contenedor svg {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 20px;
+  height: 20px;
+  color: #64748b;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.busqueda-contenedor input {
+  padding-left: 44px;
+}
+
+/* 12. TABLA */
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
+}
+
+table {
+  width: 100%;
+  min-width: 820px;
+  border-collapse: collapse;
+  background: white;
+}
+
+th,
+td {
+  padding: 13px 14px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--borde);
+}
+
+th {
+  color: white;
+  font-size: 0.88rem;
+  font-weight: 650;
+  background: var(--azul-oscuro);
+}
+
+td {
+  font-size: 0.9rem;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f1f6ff;
+}
+
+.vacio {
+  margin: 20px 0 0;
+  padding: 20px;
+  color: var(--texto-suave);
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+/* 13. CONDICIÓN ACADÉMICA */
+.etiqueta {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+.sobresaliente {
+  color: var(--azul-oscuro);
+  background: #dbeafe;
+}
+
+.aprobado {
+  color: var(--verde);
+  background: var(--verde-fondo);
+}
+
+.desaprobado {
+  color: var(--rojo);
+  background: var(--rojo-fondo);
+}
+
+/* 14. MENSAJES */
+.mensaje {
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  font-weight: 600;
+  border: 1px solid;
+  border-radius: 9px;
+}
+
+.mensaje.exito {
+  color: var(--verde);
+  background: var(--verde-fondo);
+  border-color: #86efac;
+}
+
+.mensaje.error {
+  color: var(--rojo);
+  background: var(--rojo-fondo);
+  border-color: #fca5a5;
+}
+
+/* 15. VENTANA DE CONFIRMACIÓN */
+dialog {
+  width: 90%;
+  max-width: 420px;
+  padding: 28px;
+  color: var(--texto);
+  text-align: center;
+  background: white;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+dialog h2 {
+  margin-bottom: 10px;
+  color: var(--azul-oscuro);
+  font-size: 1.25rem;
+}
+
+dialog p {
+  margin-bottom: 20px;
+  color: var(--texto-suave);
+}
+
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.dialog-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 15px;
+  color: #dc2626;
+  background: #fee2e2;
+  border-radius: 50%;
+}
+
+.dialog-icono svg {
+  width: 29px;
+  height: 29px;
+}
+
+dialog .acciones-form {
+  justify-content: center;
+}
+
+/* 16. PIE DE PÁGINA */
+.pie {
+  padding: 22px 15px;
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  background: white;
+  border-top: 1px solid var(--borde);
+}
+
+.pie p {
+  margin: 0;
+}
+
+.pie-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pie-logo {
+  padding: 4px 10px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 800;
+  background: var(--azul-oscuro);
+  border-radius: 6px;
+}
+
+.separador {
+  color: #94a3b8;
+}
+
+/* 17. DISEÑO RESPONSIVE */
+@media (max-width: 900px) {
+  .resumen {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formulario {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .cabecera {
+    padding: 23px 15px;
+  }
+
+  .cabecera-contenido {
+    gap: 12px;
+    text-align: center;
+  }
+
+  .logo-academico {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .logo-academico svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icono-decorativo {
+    display: none;
+  }
+
+  .cabecera-texto .subtitulo {
+    font-size: 0.65rem;
+  }
+
+  .cabecera h1 {
+    font-size: 1.45rem;
+  }
+
+  .cabecera p {
+    font-size: 0.85rem;
+  }
+
+  main {
+    padding: 18px 13px;
+  }
+
+  .resumen {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .dato {
+    padding: 16px;
+    gap: 13px;
+  }
+
+  .icono-dato {
+    width: 52px;
+    height: 52px;
+  }
+
+  .icono-dato svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tarjeta {
+    padding: 17px;
+    margin-bottom: 16px;
+  }
+
+  .titulo-seccion {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .icono-titulo {
+    width: 37px;
+    height: 37px;
+  }
+
+  .formulario {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .acciones-form {
+    width: 100%;
+  }
+
+  .acciones-form .btn {
+    flex: 1;
+  }
+
+  td .btn {
+    width: auto;
+  }
+
+  .pie-contenido {
+    gap: 7px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

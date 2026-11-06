@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta
+      name="description"
+      content="Sistema académico para gestionar estudiantes, notas y promedios."
+    />
+
+    <title>Gestión de Estudiantes | IDAT</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <a class="saltar" href="#principal"> Saltar al contenido principal </a>
+
+    <!-- CABECERA -->
+    <header class="cabecera">
+      <div class="cabecera-contenido">
+        <div class="logo-academico">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M2 9l10-5 10 5-10 5L2 9z" />
+            <path d="M6 11v5c3.5 3 8.5 3 12 0v-5" />
+            <path d="M22 9v6" />
+          </svg>
+        </div>
+
+        <div class="cabecera-texto">
+          <span class="subtitulo">SISTEMA ACADÉMICO</span>
+          <h1>Gestión de Estudiantes</h1>
+          <p>
+            Registre estudiantes y notas, calcule promedios y consulte su
+            condición académica.
+          </p>
+        </div>
+
+        <div class="icono-decorativo">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.2"
+            aria-hidden="true"
+          >
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path
+              d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+            />
+            <path d="M8 7h8M8 11h8" />
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <main id="principal">
+      <!-- MENSAJES -->
+      <div
+        id="mensaje"
+        class="mensaje"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <!-- RESUMEN ACADÉMICO -->
+      <section class="resumen" aria-label="Resumen académico">
+        <article class="dato">
+          <div class="icono-dato icono-azul">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+
+          <div class="dato-contenido">
+            <h2>Estudiantes</h2>
+            <p id="resTotal">0</p>
+            <span>Registrados en el sistema</span>
+          </div>
+        </article>
+
+        <article class="dato">
+          <div class="icono-dato icono-verde">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 3v18h18" />
+              <path d="M18 17V9" />
+              <path d="M13 17V5" />
+              <path d="M8 17v-3" />
+            </svg>
+          </div>
+
+          <div class="dato-contenido">
+            <h2>Promedio general</h2>
+            <p id="resPromedio">0.00</p>
+            <span>Rendimiento académico</span>
+          </div>
+        </article>
+
+        <article class="dato">
+          <div class="icono-dato icono-morado">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M8 21h8M12 17v4" />
+              <path d="M7 4h10v7a5 5 0 0 1-10 0V4z" />
+              <path d="M7 7H4v2a4 4 0 0 0 4 4" />
+              <path d="M17 7h3v2a4 4 0 0 1-4 4" />
+            </svg>
+          </div>
+
+          <div class="dato-contenido">
+            <h2>Porcentaje de aprobados</h2>
+            <p id="resAprobados">0 (0%)</p>
+            <span>Condición académica</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- FORMULARIO DE REGISTRO -->
+      <section class="tarjeta" aria-labelledby="tituloForm">
+        <div class="titulo-seccion">
+          <div class="icono-titulo">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4z" />
+            </svg>
+          </div>
+
+          <div>
+            <h2 id="tituloForm">Registrar estudiante</h2>
+            <p>Complete los datos para registrar al estudiante.</p>
+          </div>
+        </div>
+
+        <form id="formEstudiante" class="formulario" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombres y apellidos *</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              minlength="3"
+              maxlength="60"
+              placeholder="Ej.: Ana Torres Ruiz"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="codigo">Código del estudiante *</label>
+            <input
+              type="text"
+              id="codigo"
+              name="codigo"
+              required
+              pattern="[0-9]{6,10}"
+              inputmode="numeric"
+              title="Entre 6 y 10 dígitos"
+              placeholder="Ej.: 2024001"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="nota1">Nota 1 (0 a 20) *</label>
+            <input
+              type="number"
+              id="nota1"
+              name="nota1"
+              required
+              min="0"
+              max="20"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="0 - 20"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="nota2">Nota 2 (0 a 20) *</label>
+            <input
+              type="number"
+              id="nota2"
+              name="nota2"
+              required
+              min="0"
+              max="20"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="0 - 20"
+            />
+          </div>
+
+          <div class="campo">
+            <label for="nota3">Nota 3 (0 a 20) *</label>
+            <input
+              type="number"
+              id="nota3"
+              name="nota3"
+              required
+              min="0"
+              max="20"
+              step="0.1"
+              inputmode="decimal"
+              placeholder="0 - 20"
+            />
+          </div>
+
+          <div class="acciones-form">
+            <button type="submit" id="btnGuardar" class="btn btn-primario">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+                />
+                <path d="M17 21v-8H7v8M7 3v5h8" />
+              </svg>
+
+              Guardar estudiante
+            </button>
+
+            <button
+              type="button"
+              id="btnCancelar"
+              class="btn btn-secundario"
+              hidden
+            >
+              Cancelar edición
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- LISTADO DE ESTUDIANTES -->
+      <section class="tarjeta" aria-labelledby="tituloLista">
+        <div class="titulo-seccion">
+          <div class="icono-titulo">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <rect x="4" y="4" width="16" height="18" rx="2" />
+              <path d="M9 2h6v4H9zM8 11h8M8 15h8" />
+            </svg>
+          </div>
+
+          <div>
+            <h2 id="tituloLista">Listado de estudiantes</h2>
+            <p>Consulte, edite o elimine los registros académicos.</p>
+          </div>
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="campo busqueda">
+          <label for="buscador">Buscar estudiante</label>
+
+          <div class="busqueda-contenedor">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-4-4" />
+            </svg>
+
+            <input
+              type="search"
+              id="buscador"
+              placeholder="Buscar por nombre o código..."
+            />
+          </div>
+        </div>
+
+        <!-- TABLA -->
+        <div
+          class="tabla-contenedor"
+          tabindex="0"
+          role="region"
+          aria-label="Tabla de estudiantes con desplazamiento"
+        >
+          <table>
+            <caption class="solo-lectores">
+              Lista de estudiantes con sus notas, promedio y condición
+              académica.
+            </caption>
+
+            <thead>
+              <tr>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Código</th>
+                <th scope="col">Nota 1</th>
+                <th scope="col">Nota 2</th>
+                <th scope="col">Nota 3</th>
+                <th scope="col">Promedio</th>
+                <th scope="col">Condición</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody id="cuerpoTabla"></tbody>
+          </table>
+        </div>
+
+        <p id="sinResultados" class="vacio" hidden>
+          No hay estudiantes para mostrar.
+        </p>
+      </section>
+    </main>
+
+    <!-- VENTANA DE CONFIRMACIÓN -->
+    <dialog id="dlgConfirmar" aria-labelledby="dlgTitulo">
+      <div class="dialog-icono">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M12 9v4" />
+          <path d="M12 17h.01" />
+          <path
+            d="M10.3 3.9 1.8 18.5A2 2 0 0 0 3.5 21h17a2 2 0 0 0 1.7-2.5L13.7 3.9a2 2 0 0 0-3.4 0z"
+          />
+        </svg>
+      </div>
+
+      <h2 id="dlgTitulo">Confirmar eliminación</h2>
+
+      <p id="dlgTexto"></p>
+
+      <div class="acciones-form">
+        <button type="button" id="btnSi" class="btn btn-peligro">
+          Sí, eliminar
+        </button>
+
+        <button type="button" id="btnNo" class="btn btn-secundario">
+          Cancelar
+        </button>
+      </div>
+    </dialog>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie">
+      <div class="pie-contenido">
+        <span class="pie-logo">IDAT</span>
+        <span>Instituto IDAT</span>
+        <span class="separador">•</span>
+        <span>Desarrollo de Interfaces I</span>
+        <span class="separador">•</span>
+        <span>Proyecto Integrador</span>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
